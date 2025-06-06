@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Sherlock: The Daughter",
+    "image": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/example.jpg",
+    "video": "https://example.com/video/stream.m3u8"
+  },
+  {
+    "title": "Breaking Bad",
+    "image": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bad.jpg",
+    "video": "https://example.com/video/breakingbad.m3u8"
+  }
+]
