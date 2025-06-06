@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dizi Kataloğu</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; margin: 0; padding: 0; }
+    header { background: #222; padding: 1rem; text-align: center; font-size: 1.5rem; }
+    .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; padding: 1rem; }
+    .card { background: #1e1e1e; border-radius: 10px; overflow: hidden; box-shadow: 0 0 10px #000; }
+    .card img { width: 100%; height: auto; display: block; }
+    .card-body { padding: 0.5rem; }
+    .card h3 { margin: 0.5rem 0; font-size: 1rem; }
+    .buttons { display: flex; gap: 0.5rem; }
+    .buttons button { flex: 1; padding: 0.5rem; background: #333; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    .buttons button:hover { background: #555; }
+  </style>
+</head>
+<body>
+  <header>Dizipal Video Kataloğu</header>
+  <div class="container" id="video-list"></div>
+
+  <script>
+    const videos = [
+      {
+        title: "Sherlock: Daughter - 1x7",
+        image: "https://image.tmdb.org/t/p/w500/7ZstFqLhS07dMBoET5hzMK2tZoz.jpg",
+        m3u8: "https://hd1d.uk-traffic-076.com/hls2/01/00024/,cuaqubzsmosx_n,.urlset/master.m3u8"
+      },
+      {
+        title: "The Last of Us - 1x1",
+        image: "https://image.tmdb.org/t/p/w500/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg",
+        m3u8: "https://someurl.com/playlist1.m3u8"
+      }
+    ];
+
+    const container = document.getElementById("video-list");
+
+    videos.forEach(video => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${video.image}" alt="Kapak">
+        <div class="card-body">
+          <h3>${video.title}</h3>
+          <div class="buttons">
+            <button onclick="window.open('${video.m3u8}')">Rave’de Aç</button>
+            <button onclick="navigator.clipboard.writeText('${video.m3u8}')">Kopyala</button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
