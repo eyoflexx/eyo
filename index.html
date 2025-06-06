@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dizipal Video Galerisi (Rave)</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .card {
+      display: inline-block;
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px;
+      width: 200px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .title {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .btn {
+      background-color: #ff3c3c;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dizipal Video Galerisi (Rave Uyumlu)</h1>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200x300?text=Sherlock" alt="Kapak">
+    <div class="title">Sherlock: Kızı - 1x7</div>
+    <button class="btn" onclick="openInRave('https://fhd1d.uk/traffic/video1.m3u8')">Rave'de Aç</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200x300?text=Ornek" alt="Kapak">
+    <div class="title">Başka Bir Örnek - 1x8</div>
+    <button class="btn" onclick="openInRave('https://fhd1d.uk/traffic/video2.m3u8')">Rave'de Aç</button>
+  </div>
+
+  <script>
+    function openInRave(videoUrl) {
+      const raveLink = `rave://play?url=${encodeURIComponent(videoUrl)}`;
+      window.location.href = raveLink;
+    }
+  </script>
+</body>
+</html>
