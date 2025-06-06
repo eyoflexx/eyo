@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dizipal Video Galerisi</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .video-card {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .cover {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .episode-button {
+      background-color: red;
+      color: white;
+      padding: 10px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #thumbnail {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 150px;
+      display: none;
+      border: 2px solid white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dizipal Video Galerisi</h1>
+  <div id="video-list"></div>
+  <img id="thumbnail" src="" alt="Thumbnail">
+
+  <script>
+    fetch('data/videos.json')
+      .then(response => response.json())
+      .then(data => {
+        const videoList = document.getElementById('video-list');
+        data.forEach(show => {
+          const card = document.createElement('div');
+          card.className = 'video-card';
+          card.innerHTML = `
+            <h2>${show.title}</h2>
+            <img src="${show.cover}" alt="${show.title}" class="cover">
+          `;
+          show.episodes.forEach(ep => {
+            const button = document.createElement('button');
+            button.className = 'episode-button';
+            button.textContent = ep.name;
+            button.onmouseenter = () => {
+              const thumbnail = document.getElementById('thumbnail');
+              thumbnail.src = ep.thumbnail;
+              thumbnail.style.display = 'block';
+            };
+            button.onmouseleave = () => {
+              const thumbnail = document.getElementById('thumbnail');
+              thumbnail.style.display = 'none';
+            };
+            button.onclick = () => {
+              window.location.href = `https://play.rave.io/?url=${encodeURIComponent(ep.video)}`;
+            };
+            card.appendChild(button);
+          });
+          videoList.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>
